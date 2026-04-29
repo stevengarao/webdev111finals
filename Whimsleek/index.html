@@ -4,24 +4,174 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Whimsleek | Your Interactive Outfit Generator</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=DM+Serif+Display:ital@0;1&family=Fredoka:wght@400;600&family=Shrikhand&display=swap" rel="stylesheet">
+
     <style>
-        /* SUPER BASIC SKELETON CSS JUST TO SHOW THE LAYOUT */
-        body { font-family: sans-serif; margin: 0; padding: 0; line-height: 1.6; }
-        .placeholder-box { background-color: #f0f0f0; border: 2px dashed #ccc; padding: 20px; text-align: center; }
+        /* COLOR PALETTE & VARIABLES */
+        :root {
+            --baby-pink: #ffd1dc;
+            --hot-pink: #ff66a3;
+            --cream: #fffdf7;
+            --mint-green: #c1f0d0;
+            --lavender: #e0d4f7;
+            --sky-blue: #d4eaff;
+            --butter-yellow: #fff3b0;
+            --text-dark: #4a3b32; /* Chocolate brown instead of harsh black */
+        }
+
+        /* NOTEBOOK GRID BACKGROUND */
+        body { 
+            font-family: 'Fredoka', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            color: var(--text-dark);
+            background-color: var(--cream);
+            background-image: 
+                linear-gradient(var(--baby-pink) 1px, transparent 1px),
+                linear-gradient(90deg, var(--baby-pink) 1px, transparent 1px);
+            background-size: 30px 30px; /* Graph paper effect */
+            overflow-x: hidden;
+        }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3 { font-family: 'DM Serif Display', serif; font-weight: normal; }
+        .logo h2 { 
+            font-family: 'Shrikhand', cursive; 
+            color: var(--hot-pink); 
+            font-size: 2rem;
+            text-shadow: 2px 2px 0px white, 4px 4px 0px var(--baby-pink);
+            transform: rotate(-3deg);
+        }
         
-        /* Updated Navigation Styles */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: #fff; border-bottom: 1px solid #ddd; }
-        .logo h2 { margin: 0; font-style: italic; } /* Approximating the WhimSleek logo font style */
-        nav ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; flex-wrap: wrap; }
-        nav ul li a { text-decoration: none; color: #333; font-weight: bold; }
-        nav ul li a:hover { color: #ffb6c1; }
+        /* NAVIGATION - Floating paper vibe */
+        nav { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 15px 40px; 
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(5px);
+            border-bottom: 3px dashed var(--hot-pink); 
+            position: sticky; top: 0; z-index: 100;
+        }
+        nav ul { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; flex-wrap: wrap; }
+        nav ul li a { 
+            text-decoration: none; color: var(--text-dark); 
+            font-weight: 600; font-size: 1.1rem;
+            transition: all 0.2s;
+        }
+        nav ul li a:hover { 
+            color: var(--hot-pink); 
+            text-decoration: wavy underline; 
+            transform: scale(1.1) rotate(2deg);
+            display: inline-block;
+        }
+
+        /* HERO SECTION - Dreamy Sky */
+        .hero { 
+            text-align: center; padding: 100px 20px; 
+            background: linear-gradient(180deg, var(--sky-blue) 0%, rgba(255,253,247,0) 100%);
+            position: relative;
+        }
+        .hero h1 { 
+            font-size: 3.5rem; margin-bottom: 10px; color: var(--hot-pink); 
+            text-shadow: 2px 2px 0px white;
+        }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px auto; }
         
-        .hero { text-align: center; padding: 80px 20px; background: #fdf5e6; } 
-        .features { display: flex; justify-content: center; gap: 20px; padding: 50px 20px; }
-        .card { border: 1px solid #333; padding: 20px; width: 30%; border-radius: 10px; }
-        .about-split { display: flex; gap: 40px; padding: 50px 20px; align-items: center; }
+        /* CUTE BUTTONS */
+        button {
+            padding: 15px 30px; font-size: 1.2rem; cursor: pointer; 
+            background: var(--hot-pink); color: white;
+            border: 2px solid white; border-radius: 50px; 
+            font-family: 'Fredoka', sans-serif; font-weight: bold;
+            box-shadow: 4px 4px 0px var(--baby-pink);
+            transition: transform 0.2s;
+        }
+        button:hover { transform: translateY(-3px) scale(1.05); }
+
+        /* HERO VISUAL PLACEHOLDER (Scrapbook cutout style) */
+        .hero-visual {
+            height: 350px; max-width: 600px; margin: 30px auto 0;
+            background: var(--lavender);
+            border: 10px solid white;
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; /* Organic blob shape */
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+            display: flex; justify-content: center; align-items: center;
+            font-family: 'Caveat', cursive; font-size: 1.5rem; color: #777;
+            position: relative;
+        }
+        
+        /* DECORATIVE STICKERS (Absolute positioning for chaos) */
+        .sticker { position: absolute; font-size: 2.5rem; user-select: none; z-index: -1; }
+        .s1 { top: 20%; left: 10%; transform: rotate(-15deg); }
+        .s2 { top: 60%; right: 15%; transform: rotate(20deg); }
+        .s3 { top: 15%; right: 10%; font-size: 3rem; }
+
+        /* FEATURES / HOW IT WORKS - Polaroid Cards Layout */
+        #features { padding: 60px 20px; }
+        #features h2 { text-align: center; font-size: 2.5rem; }
+        .features-grid { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 30px; }
+        
+        .polaroid-card { 
+            background: white; padding: 15px 15px 50px 15px; width: 280px; 
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.08); 
+            position: relative;
+            border: 1px solid #eee;
+        }
+        /* Asymmetry! */
+        .polaroid-card:nth-child(1) { transform: rotate(-3deg); }
+        .polaroid-card:nth-child(2) { transform: rotate(2deg) translateY(20px); }
+        .polaroid-card:nth-child(3) { transform: rotate(-1deg); }
+        
+        /* Cute tape effect on cards */
+        .polaroid-card::before {
+            content: ''; position: absolute; top: -10px; left: 50%; transform: translateX(-50%) rotate(-2deg);
+            width: 80px; height: 25px; background: rgba(255, 255, 255, 0.6);
+            border: 1px solid #ddd; backdrop-filter: blur(2px);
+        }
+
+        .photo-placeholder { background: var(--mint-green); height: 200px; display: flex; align-items: center; justify-content: center; font-family: 'Caveat', cursive;}
+        .polaroid-card h3 { font-family: 'Caveat', cursive; font-size: 2rem; margin: 15px 0 5px 0; color: var(--hot-pink); }
+        .polaroid-card p { font-size: 0.95rem; margin: 0; }
+
+        /* ABOUT SECTION - Magazine Split */
+        .about-split { 
+            display: flex; gap: 60px; padding: 80px 10vw; align-items: center; 
+            background: var(--butter-yellow);
+            border-top: 3px wavy var(--lavender);
+            border-bottom: 3px wavy var(--lavender);
+        }
         .about-split > div { flex: 1; }
-        footer { background: #333; color: white; text-align: center; padding: 30px 20px; }
+        .about-text h2 { font-size: 2.5rem; margin-bottom: 10px; }
+        .about-text p { font-size: 1.1rem; }
+        
+        /* Layered image effect */
+        .about-images { position: relative; }
+        .img-layer-1 { background: var(--sky-blue); height: 300px; border: 8px solid white; transform: rotate(-5deg); box-shadow: 5px 5px 0px var(--baby-pink); }
+        .img-layer-2 { position: absolute; bottom: -20px; right: -20px; background: var(--hot-pink); width: 150px; height: 150px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-family: 'Caveat', cursive; font-size: 1.5rem; transform: rotate(10deg); box-shadow: 3px 3px 10px rgba(0,0,0,0.1); }
+
+        /* SHOP SECTION */
+        #shop { padding: 80px 20px; text-align: center; }
+
+        /* FOOTER */
+        footer { 
+            background: var(--hot-pink); color: white; text-align: center; padding: 50px 20px; 
+            font-family: 'DM Serif Display', serif;
+        }
+        footer h2 { font-family: 'Shrikhand', cursive; font-size: 2.5rem; margin: 0; letter-spacing: 2px;}
+        
+        /* SPARKLE CURSOR TRAIL */
+        .sparkle {
+            position: fixed; pointer-events: none; z-index: 9999;
+            animation: floatAway 1s linear forwards;
+            font-size: 1.2rem;
+        }
+        @keyframes floatAway {
+            0% { transform: scale(1) translateY(0); opacity: 1; }
+            100% { transform: scale(0.5) translateY(-50px) rotate(180deg); opacity: 0; }
+        }
     </style>
 </head>
 <body>
@@ -37,75 +187,101 @@
             <li><a href="#orders">Orders</a></li>
             <li><a href="#profile">Profile</a></li>
             <li><a href="#about">About Us</a></li>
-            <li><a href="#login">Login / Logout</a></li>
+            <li><a href="#login">Login</a></li>
         </ul>
     </nav>
 
     <main>
         <section id="home" class="hero">
-            <h1>Goodbye, Decision Fatigue. Hello, Perfect Fit.</h1>
+            <div class="sticker s1">🎀</div>
+            <div class="sticker s2">🦋</div>
+            <div class="sticker s3">☁️</div>
+
+            <h1>Goodbye, Decision Fatigue.<br>Hello, Perfect Fit. 💖</h1>
             <p>Your whimsical, interactive styling tool and wardrobe studio. Generate, customize, and shop complete outfits in seconds.</p>
-            <button style="padding: 15px 30px; font-size: 18px; cursor: pointer; background: #ffb6c1; border: none; border-radius: 30px; font-weight: bold;">
-                Generate an Outfit Now
-            </button>
-            <br><br>
-            <div class="placeholder-box" style="height: 300px; max-width: 600px; margin: 0 auto; border-radius: 50%;">
-                [ Main Hero Visual / 3D Element / Outfit Collage goes here ]
+            <button>Generate an Outfit Now ✨</button>
+            
+            <div class="hero-visual">
+                [ 3D Bag / Outfit Collage Image Here ]
             </div>
         </section>
 
-        <section id="features" style="background: #ffe4e1;"> 
-            <h2 style="text-align: center; padding-top: 40px;">How It Works</h2>
-            <div class="features">
-                <div class="card" style="background: white;">
-                    <div class="placeholder-box" style="height: 150px; border-radius: 10px;">[ Image ]</div>
-                    <h3>1. Generate</h3>
-                    <p>Spin the wheel! Let our interactive tool mix and match tops, bottoms, and accessories for you.</p>
+        <section id="features"> 
+            <h2>How It Works 🌸</h2>
+            <div class="features-grid">
+                <div class="polaroid-card">
+                    <div class="photo-placeholder">Generate Image</div>
+                    <h3>1. Spin & Mix</h3>
+                    <p>Let our interactive tool mix and match tops, bottoms, and accessories for you.</p>
                 </div>
-                <div class="card" style="background: white;">
-                    <div class="placeholder-box" style="height: 150px; border-radius: 10px;">[ Image ]</div>
-                    <h3>2. Customize</h3>
-                    <p>Love the pants but not the shirt? "Lock" your favorite pieces and swap the rest.</p>
+                <div class="polaroid-card">
+                    <div class="photo-placeholder">Customize Image</div>
+                    <h3>2. Lock It In</h3>
+                    <p>Love the skirt but not the shirt? "Lock" your favorite pieces and swap the rest.</p>
                 </div>
-                <div class="card" style="background: white;">
-                    <div class="placeholder-box" style="height: 150px; border-radius: 10px;">[ Image ]</div>
+                <div class="polaroid-card">
+                    <div class="photo-placeholder">Shop Image</div>
                     <h3>3. Shop the Look</h3>
-                    <p>Found the perfect combo? Add the entire coordinated outfit to your cart with one click.</p>
+                    <p>Found the perfect combo? Add the entire coordinated outfit to your cart instantly.</p>
                 </div>
             </div>
         </section>
 
         <section id="about" class="about-split">
             <div class="about-text">
-                <h2>Curing Choice Overload</h2>
-                <p>We know the struggle of opening 10 different tabs just to see if a top matches a skirt. Whimsleek is your integrated virtual fitting room.</p>
-                <p>Stop imagining. Start visualizing. We make fashion accessible, fun, and effortless.</p>
-                <button style="padding: 10px 20px; cursor: pointer;">Learn More About Us</button>
+                <h2>Curing Choice Overload 🎀</h2>
+                <p>We know the struggle of opening 10 different tabs just to see if a top matches a skirt. Whimsleek is your integrated, dreamy virtual fitting room.</p>
+                <p>Stop imagining. Start visualizing. We make fashion accessible, fun, and totally effortless.</p>
+                <button>Read Our Diary</button>
             </div>
             <div class="about-images">
-                <div class="placeholder-box" style="height: 250px; border-radius: 20px;">
-                    [ Stylish aesthetic photo / User Gallery tease ]
-                </div>
+                <div class="img-layer-1"></div>
+                <div class="img-layer-2">so<br>cute!</div>
             </div>
         </section>
 
-        <section id="shop" style="padding: 50px 20px; text-align: center;">
-            <h2>Trending Pieces</h2>
-            <p>Discover what's currently in the generator.</p>
-            <div class="features">
-                <div class="card"><div class="placeholder-box" style="height: 200px;">[ Item 1 ]</div></div>
-                <div class="card"><div class="placeholder-box" style="height: 200px;">[ Item 2 ]</div></div>
-                <div class="card"><div class="placeholder-box" style="height: 200px;">[ Item 3 ]</div></div>
+        <section id="shop">
+            <h2>Trending in the Studio 🛍️</h2>
+            <p style="font-family: 'Caveat', cursive; font-size: 1.5rem; color: var(--hot-pink);">Discover what the girlies are generating right now...</p>
+            <div class="features-grid">
+                <div class="polaroid-card"><div class="photo-placeholder" style="background: var(--sky-blue);">Item 1</div></div>
+                <div class="polaroid-card"><div class="photo-placeholder" style="background: var(--lavender);">Item 2</div></div>
+                <div class="polaroid-card"><div class="photo-placeholder" style="background: var(--baby-pink);">Item 3</div></div>
             </div>
-            <button style="padding: 10px 20px; margin-top: 20px; cursor: pointer;">View Full Shop</button>
+            <br>
+            <button>View Full Closet</button>
         </section>
     </main>
 
     <footer>
         <h2>WhimSleek.</h2>
-        <p>Your interactive wardrobe studio.</p>
-        <p style="font-size: 12px; margin-top: 20px;">&copy; 2026 WhimSleek. For educational purposes.</p>
+        <p style="font-family: 'Caveat', cursive; font-size: 1.5rem;">Your interactive wardrobe studio xoxo</p>
+        <p style="font-size: 12px; margin-top: 30px;">&copy; 2026 WhimSleek. For educational purposes. 🦋</p>
     </footer>
 
+    <script>
+        document.addEventListener('mousemove', function(e) {
+            // Only create a sparkle every few pixels to avoid lagging the browser
+            if (Math.random() > 0.85) { 
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                
+                // Randomly pick a whimsical emoji
+                const emojis = ['✨', '💖', '⭐', '🌸'];
+                sparkle.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+                
+                // Position exactly at the mouse cursor
+                sparkle.style.left = e.pageX + 'px';
+                sparkle.style.top = e.pageY + 'px';
+                
+                document.body.appendChild(sparkle);
+                
+                // Remove the sparkle from the HTML after the animation finishes
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1000);
+            }
+        });
+    </script>
 </body>
 </html>
