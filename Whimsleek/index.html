@@ -6,12 +6,17 @@
     <title>Whimsleek | Your Interactive Outfit Generator</title>
     <style>
         /* SUPER BASIC SKELETON CSS JUST TO SHOW THE LAYOUT */
-        /* You can delete this once you start your actual CSS */
         body { font-family: sans-serif; margin: 0; padding: 0; line-height: 1.6; }
         .placeholder-box { background-color: #f0f0f0; border: 2px dashed #ccc; padding: 20px; text-align: center; }
-        nav { display: flex; justify-content: space-between; padding: 20px; background: #fff; border-bottom: 1px solid #ddd; }
-        nav ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; }
-        .hero { text-align: center; padding: 80px 20px; background: #fdf5e6; } /* Whimsical soft background */
+        
+        /* Updated Navigation Styles */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background: #fff; border-bottom: 1px solid #ddd; }
+        .logo h2 { margin: 0; font-style: italic; } /* Approximating the WhimSleek logo font style */
+        nav ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; flex-wrap: wrap; }
+        nav ul li a { text-decoration: none; color: #333; font-weight: bold; }
+        nav ul li a:hover { color: #ffb6c1; }
+        
+        .hero { text-align: center; padding: 80px 20px; background: #fdf5e6; } 
         .features { display: flex; justify-content: center; gap: 20px; padding: 50px 20px; }
         .card { border: 1px solid #333; padding: 20px; width: 30%; border-radius: 10px; }
         .about-split { display: flex; gap: 40px; padding: 50px 20px; align-items: center; }
@@ -23,33 +28,34 @@
 
     <nav>
         <div class="logo">
-            <h2>✨ Whimsleek</h2>
+            <h2>✨ WhimSleek</h2>
         </div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#generator">Outfit Generator</a></li>
             <li><a href="#shop">Shop</a></li>
-            <li><a href="#about">About</a></li>
+            <li><a href="#orders">Orders</a></li>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#login">Login / Logout</a></li>
         </ul>
-        <div class="nav-icons">
-            <span>🛒 Cart</span> | <span>👤 Profile</span>
-        </div>
     </nav>
 
     <main>
         <section id="home" class="hero">
             <h1>Goodbye, Decision Fatigue. Hello, Perfect Fit.</h1>
             <p>Your whimsical, interactive styling tool and wardrobe studio. Generate, customize, and shop complete outfits in seconds.</p>
-            <button style="padding: 15px 30px; font-size: 18px; cursor: pointer; background: #ffb6c1; border: none; border-radius: 30px;">
+            <button style="padding: 15px 30px; font-size: 18px; cursor: pointer; background: #ffb6c1; border: none; border-radius: 30px; font-weight: bold;">
                 Generate an Outfit Now
             </button>
             <br><br>
             <div class="placeholder-box" style="height: 300px; max-width: 600px; margin: 0 auto; border-radius: 50%;">
-                [ Main Hero Visual / 3D Bag / Outfit Collage goes here ]
+                [ Main Hero Visual / 3D Element / Outfit Collage goes here ]
             </div>
         </section>
 
-        <section id="features" style="background: #ffe4e1;"> <h2 style="text-align: center; padding-top: 40px;">How It Works...</h2>
+        <section id="features" style="background: #ffe4e1;"> 
+            <h2 style="text-align: center; padding-top: 40px;">How It Works</h2>
             <div class="features">
                 <div class="card" style="background: white;">
                     <div class="placeholder-box" style="height: 150px; border-radius: 10px;">[ Image ]</div>
@@ -73,8 +79,8 @@
             <div class="about-text">
                 <h2>Curing Choice Overload</h2>
                 <p>We know the struggle of opening 10 different tabs just to see if a top matches a skirt. Whimsleek is your integrated virtual fitting room.</p>
-                <p>Stop imagining. Start visualizing. We make fashion accessible, fun, and effortless for the Gen Z and Millennial fashionista.</p>
-                <button>Learn More About Us</button>
+                <p>Stop imagining. Start visualizing. We make fashion accessible, fun, and effortless.</p>
+                <button style="padding: 10px 20px; cursor: pointer;">Learn More About Us</button>
             </div>
             <div class="about-images">
                 <div class="placeholder-box" style="height: 250px; border-radius: 20px;">
@@ -87,22 +93,18 @@
             <h2>Trending Pieces</h2>
             <p>Discover what's currently in the generator.</p>
             <div class="features">
-                <div class="card"><div class="placeholder-box">[ Item 1 ]</div></div>
-                <div class="card"><div class="placeholder-box">[ Item 2 ]</div></div>
-                <div class="card"><div class="placeholder-box">[ Item 3 ]</div></div>
+                <div class="card"><div class="placeholder-box" style="height: 200px;">[ Item 1 ]</div></div>
+                <div class="card"><div class="placeholder-box" style="height: 200px;">[ Item 2 ]</div></div>
+                <div class="card"><div class="placeholder-box" style="height: 200px;">[ Item 3 ]</div></div>
             </div>
+            <button style="padding: 10px 20px; margin-top: 20px; cursor: pointer;">View Full Shop</button>
         </section>
     </main>
 
     <footer>
-        <h2>Whimsleek.</h2>
+        <h2>WhimSleek.</h2>
         <p>Your interactive wardrobe studio.</p>
-        <ul style="list-style: none; display: flex; justify-content: center; gap: 15px; padding: 0;">
-            <li>Instagram</li>
-            <li>TikTok</li>
-            <li>Pinterest</li>
-        </ul>
-        <p style="font-size: 12px; margin-top: 20px;">&copy; 2026 Whimsleek. For educational purposes.</p>
+        <p style="font-size: 12px; margin-top: 20px;">&copy; 2026 WhimSleek. For educational purposes.</p>
     </footer>
 
 </body>
