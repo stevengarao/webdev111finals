@@ -230,3 +230,159 @@ nav ul li a:hover { color: var(--accent-color); }
 
 .hidden { display: none !important; }
 
+/* --- MAGIC LIGHT THEME (For Shop Page) --- */
+body.light-theme {
+    --bg-color: #e8ecef; /* Very subtle, high-end cool light gray/silver */
+    --text-primary: #111111; /* Almost black for sharp text */
+    --text-muted: #555555;
+    --accent-color: #a67c00; /* Darker, more muted luxury gold para bumagay sa white */
+}
+
+/* Update natin yung Nav para sa Light Mode */
+body.light-theme .nav-scrolled {
+    background-color: rgba(232, 236, 239, 0.95);
+    border-bottom: 1px solid #d1d1d1;
+}
+
+/* Ibahin ang cursor kulay sa light mode */
+body.light-theme #custom-cursor {
+    border-color: var(--text-primary);
+}
+
+/* --- SHOP PAGE LAYOUT --- */
+.shop-page {
+    padding-top: 150px;
+    padding-bottom: 100px;
+    min-height: 100vh;
+}
+
+.shop-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.shop-header h1 {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 400;
+    margin: 0;
+    letter-spacing: 2px;
+}
+.shop-header p {
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+/* SHOP FILTERS */
+.shop-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 60px;
+}
+.filter-btn {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid transparent;
+    color: var(--text-muted);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding-bottom: 5px;
+    transition: all 0.3s;
+}
+.filter-btn:hover {
+    color: var(--text-primary);
+}
+.filter-btn.active {
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--text-primary);
+    font-weight: 400;
+}
+
+/* SHOP GRID */
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px;
+    padding: 0 5vw;
+}
+
+.product-card {
+    display: block;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.product-card.hide {
+    display: none;
+}
+
+.product-img-box {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4; /* Vogue/Editorial standard portrait ratio */
+    background: #dcdcdc; /* Light placeholder color */
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+.product-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+.product-card:hover .product-img-box img {
+    transform: scale(1.05);
+}
+
+.product-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(232, 236, 239, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    backdrop-filter: blur(3px);
+}
+.product-card:hover .product-overlay {
+    opacity: 1;
+}
+
+.product-info {
+    text-align: center;
+}
+.product-info h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 5px 0;
+}
+.product-info .price {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* LIGHT THEME OVERRIDES FOR FOOTER */
+body.light-theme .mega-footer {
+    background-color: #dfdfdf;
+    border-top: 1px solid #ccc;
+}
+body.light-theme .footer-bottom {
+    border-top: 1px solid #ccc;
+}
+
+/* --- FIXED CURSOR FOR LIGHT THEME --- */
+body.light-theme #custom-cursor {
+    border-color: #111111; /* Dark na dark para kitang-kita */
+    mix-blend-mode: normal; /* Pinatay natin yung chameleon effect para hindi mag-blend */
+}
+
+/* Pag tinapat sa buttons (hover) sa Light Theme */
+body.light-theme #custom-cursor.cursor-hover {
+    background-color: rgba(0, 0, 0, 0.08); /* Very subtle dark circle imbes na light gold */
+    border-color: #111111;
+}
