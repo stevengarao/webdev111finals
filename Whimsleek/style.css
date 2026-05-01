@@ -386,3 +386,54 @@ body.light-theme #custom-cursor.cursor-hover {
     background-color: rgba(0, 0, 0, 0.08); /* Very subtle dark circle imbes na light gold */
     border-color: #111111;
 }
+
+/* --- LUXURY GLASS FLOATING CART BUTTON --- */
+.floating-btn {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    
+    /* Ito yung Glass Effect */
+    background: rgba(255, 255, 255, 0.4); /* Semi-transparent white */
+    backdrop-filter: blur(12px); /* Yung nagpapa-blur ng background (frosted look) */
+    -webkit-backdrop-filter: blur(12px); /* Para gumana sa Safari/Apple devices */
+    border: 1px solid rgba(255, 255, 255, 0.6); /* Manipis at light na border */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); /* Soft shadow para umangat */
+    
+    color: #111111; /* Dark text para mabasa sa glass */
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 1px;
+    z-index: 1000;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    cursor: none; 
+}
+
+.floating-btn:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.7); /* Mas liliwanag onti pag tinapatan ng mouse */
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* YUNG RED NOTIFICATION NUMBER (Keep natin to para mag-pop yung red) */
+.badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #ff3b30; 
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
