@@ -3,285 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Whimsleek | Your Interactive Outfit Generator</title>
+    <title>WhimSleek | The Art of Styling</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=DM+Serif+Display:ital@0;1&family=Fredoka:wght@400;600&family=Shrikhand&display=swap" rel="stylesheet">
-
-    <style>
-        /* COLOR PALETTE & VARIABLES */
-        :root {
-            --baby-pink: #ffd1dc;
-            --hot-pink: #ff66a3;
-            --cream: #fffdf7;
-            --mint-green: #c1f0d0;
-            --lavender: #e0d4f7;
-            --sky-blue: #d4eaff;
-            --butter-yellow: #fff3b0;
-            --text-dark: #4a3b32; /* Chocolate brown instead of harsh black */
-        }
-
-        /* NOTEBOOK GRID BACKGROUND */
-        body { 
-            font-family: 'Fredoka', sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            color: var(--text-dark);
-            background-color: var(--cream);
-            background-image: 
-                linear-gradient(var(--baby-pink) 1px, transparent 1px),
-                linear-gradient(90deg, var(--baby-pink) 1px, transparent 1px);
-            background-size: 30px 30px; /* Graph paper effect */
-            overflow-x: hidden;
-        }
-
-        /* TYPOGRAPHY */
-        h1, h2, h3 { font-family: 'DM Serif Display', serif; font-weight: normal; }
-        .logo h2 { 
-            font-family: 'Shrikhand', cursive; 
-            color: var(--hot-pink); 
-            font-size: 2rem;
-            text-shadow: 2px 2px 0px white, 4px 4px 0px var(--baby-pink);
-            transform: rotate(-3deg);
-        }
-        
-        /* NAVIGATION - Floating paper vibe */
-        nav { 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 15px 40px; 
-            background: rgba(255, 255, 255, 0.85); 
-            backdrop-filter: blur(5px);
-            border-bottom: 3px dashed var(--hot-pink); 
-            position: sticky; top: 0; z-index: 100;
-        }
-        nav ul { list-style: none; display: flex; gap: 25px; margin: 0; padding: 0; flex-wrap: wrap; }
-        nav ul li a { 
-            text-decoration: none; color: var(--text-dark); 
-            font-weight: 600; font-size: 1.1rem;
-            transition: all 0.2s;
-        }
-        nav ul li a:hover { 
-            color: var(--hot-pink); 
-            text-decoration: wavy underline; 
-            transform: scale(1.1) rotate(2deg);
-            display: inline-block;
-        }
-
-        /* HERO SECTION - Dreamy Sky */
-        .hero { 
-            text-align: center; padding: 100px 20px; 
-            background: linear-gradient(180deg, var(--sky-blue) 0%, rgba(255,253,247,0) 100%);
-            position: relative;
-        }
-        .hero h1 { 
-            font-size: 3.5rem; margin-bottom: 10px; color: var(--hot-pink); 
-            text-shadow: 2px 2px 0px white;
-        }
-        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px auto; }
-        
-        /* CUTE BUTTONS */
-        button {
-            padding: 15px 30px; font-size: 1.2rem; cursor: pointer; 
-            background: var(--hot-pink); color: white;
-            border: 2px solid white; border-radius: 50px; 
-            font-family: 'Fredoka', sans-serif; font-weight: bold;
-            box-shadow: 4px 4px 0px var(--baby-pink);
-            transition: transform 0.2s;
-        }
-        button:hover { transform: translateY(-3px) scale(1.05); }
-
-        /* HERO VISUAL PLACEHOLDER (Scrapbook cutout style) */
-        .hero-visual {
-            height: 350px; max-width: 600px; margin: 30px auto 0;
-            background: var(--lavender);
-            border: 10px solid white;
-            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; /* Organic blob shape */
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
-            display: flex; justify-content: center; align-items: center;
-            font-family: 'Caveat', cursive; font-size: 1.5rem; color: #777;
-            position: relative;
-        }
-        
-        /* DECORATIVE STICKERS (Absolute positioning for chaos) */
-        .sticker { position: absolute; font-size: 2.5rem; user-select: none; z-index: -1; }
-        .s1 { top: 20%; left: 10%; transform: rotate(-15deg); }
-        .s2 { top: 60%; right: 15%; transform: rotate(20deg); }
-        .s3 { top: 15%; right: 10%; font-size: 3rem; }
-
-        /* FEATURES / HOW IT WORKS - Polaroid Cards Layout */
-        #features { padding: 60px 20px; }
-        #features h2 { text-align: center; font-size: 2.5rem; }
-        .features-grid { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 30px; }
-        
-        .polaroid-card { 
-            background: white; padding: 15px 15px 50px 15px; width: 280px; 
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.08); 
-            position: relative;
-            border: 1px solid #eee;
-        }
-        /* Asymmetry! */
-        .polaroid-card:nth-child(1) { transform: rotate(-3deg); }
-        .polaroid-card:nth-child(2) { transform: rotate(2deg) translateY(20px); }
-        .polaroid-card:nth-child(3) { transform: rotate(-1deg); }
-        
-        /* Cute tape effect on cards */
-        .polaroid-card::before {
-            content: ''; position: absolute; top: -10px; left: 50%; transform: translateX(-50%) rotate(-2deg);
-            width: 80px; height: 25px; background: rgba(255, 255, 255, 0.6);
-            border: 1px solid #ddd; backdrop-filter: blur(2px);
-        }
-
-        .photo-placeholder { background: var(--mint-green); height: 200px; display: flex; align-items: center; justify-content: center; font-family: 'Caveat', cursive;}
-        .polaroid-card h3 { font-family: 'Caveat', cursive; font-size: 2rem; margin: 15px 0 5px 0; color: var(--hot-pink); }
-        .polaroid-card p { font-size: 0.95rem; margin: 0; }
-
-        /* ABOUT SECTION - Magazine Split */
-        .about-split { 
-            display: flex; gap: 60px; padding: 80px 10vw; align-items: center; 
-            background: var(--butter-yellow);
-            border-top: 3px wavy var(--lavender);
-            border-bottom: 3px wavy var(--lavender);
-        }
-        .about-split > div { flex: 1; }
-        .about-text h2 { font-size: 2.5rem; margin-bottom: 10px; }
-        .about-text p { font-size: 1.1rem; }
-        
-        /* Layered image effect */
-        .about-images { position: relative; }
-        .img-layer-1 { background: var(--sky-blue); height: 300px; border: 8px solid white; transform: rotate(-5deg); box-shadow: 5px 5px 0px var(--baby-pink); }
-        .img-layer-2 { position: absolute; bottom: -20px; right: -20px; background: var(--hot-pink); width: 150px; height: 150px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-family: 'Caveat', cursive; font-size: 1.5rem; transform: rotate(10deg); box-shadow: 3px 3px 10px rgba(0,0,0,0.1); }
-
-        /* SHOP SECTION */
-        #shop { padding: 80px 20px; text-align: center; }
-
-        /* FOOTER */
-        footer { 
-            background: var(--hot-pink); color: white; text-align: center; padding: 50px 20px; 
-            font-family: 'DM Serif Display', serif;
-        }
-        footer h2 { font-family: 'Shrikhand', cursive; font-size: 2.5rem; margin: 0; letter-spacing: 2px;}
-        
-        /* SPARKLE CURSOR TRAIL */
-        .sparkle {
-            position: fixed; pointer-events: none; z-index: 9999;
-            animation: floatAway 1s linear forwards;
-            font-size: 1.2rem;
-        }
-        @keyframes floatAway {
-            0% { transform: scale(1) translateY(0); opacity: 1; }
-            100% { transform: scale(0.5) translateY(-50px) rotate(180deg); opacity: 0; }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav>
+    <div id="preloader">
+        <h1 class="preloader-logo">WhimSleek</h1>
+    </div>
+
+    <div id="custom-cursor"></div>
+
+    <nav id="main-nav">
         <div class="logo">
-            <h2>✨ WhimSleek</h2>
+            <a href="index.html">WhimSleek</a>
         </div>
         <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#generator">Outfit Generator</a></li>
-            <li><a href="#shop">Shop</a></li>
-            <li><a href="#orders">Orders</a></li>
-            <li><a href="#profile">Profile</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#login">Login</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="generator.html">Outfit Generator</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="orders.html">Orders</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="login.html">Login</a></li>
         </ul>
     </nav>
 
     <main>
-        <section id="home" class="hero">
-            <div class="sticker s1">🎀</div>
-            <div class="sticker s2">🦋</div>
-            <div class="sticker s3">☁️</div>
-
-            <h1>Goodbye, Decision Fatigue.<br>Hello, Perfect Fit. 💖</h1>
-            <p>Your whimsical, interactive styling tool and wardrobe studio. Generate, customize, and shop complete outfits in seconds.</p>
-            <button>Generate an Outfit Now ✨</button>
-            
-            <div class="hero-visual">
-                [ 3D Bag / Outfit Collage Image Here ]
+        <section class="hero fade-in">
+            <div class="hero-bg-placeholder" style="padding: 0; border: none;">
+                <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;">
+                    <source src="homevid1.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="hero-content">
+                <h1>The Infinite Craft<br>of Styling.</h1>
+                <p>Curate your perfect silhouette. An exclusive virtual fitting room experience.</p>
+                <a href="generator.html" class="btn-outline">Discover the Generator</a>
             </div>
         </section>
 
-        <section id="features"> 
-            <h2>How It Works 🌸</h2>
-            <div class="features-grid">
-                <div class="polaroid-card">
-                    <div class="photo-placeholder">Generate Image</div>
-                    <h3>1. Spin & Mix</h3>
-                    <p>Let our interactive tool mix and match tops, bottoms, and accessories for you.</p>
+        <section class="gallery fade-in">
+            <div class="gallery-text">
+                <h2>WHIMSLEEK: THE ART OF SELECTION</h2>
+                <p>Beyond the clutter lies your true style. Experience a curated aesthetic designed for the modern visionary.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="editorial-image">
+                    <div class="img-placeholder" style="padding: 0; overflow: hidden; border: none; background: transparent;">
+                        <img src="homepic1.jpg" alt="Vogue-style Outfit" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <span class="caption">Cyber-Coquette Punk</span>
                 </div>
-                <div class="polaroid-card">
-                    <div class="photo-placeholder">Customize Image</div>
-                    <h3>2. Lock It In</h3>
-                    <p>Love the skirt but not the shirt? "Lock" your favorite pieces and swap the rest.</p>
-                </div>
-                <div class="polaroid-card">
-                    <div class="photo-placeholder">Shop Image</div>
-                    <h3>3. Shop the Look</h3>
-                    <p>Found the perfect combo? Add the entire coordinated outfit to your cart instantly.</p>
+                <div class="editorial-image">
+                    <div class="img-placeholder" style="padding: 0; overflow: hidden; border: none; background: transparent;">
+                        <img src="homepic2.jpg" alt="Close-up Texture" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <span class="caption">Avant-Garde Grunge-Chic</span>
                 </div>
             </div>
         </section>
 
-        <section id="about" class="about-split">
-            <div class="about-text">
-                <h2>Curing Choice Overload 🎀</h2>
-                <p>We know the struggle of opening 10 different tabs just to see if a top matches a skirt. Whimsleek is your integrated, dreamy virtual fitting room.</p>
-                <p>Stop imagining. Start visualizing. We make fashion accessible, fun, and totally effortless.</p>
-                <button>Read Our Diary</button>
+        <section class="horizontal-showcase fade-in">
+            <div class="showcase-text">
+                <h2>Our Curated Archives</h2>
+                <a href="shop.html" class="link-discover">Explore all styles &rarr;</a>
             </div>
-            <div class="about-images">
-                <div class="img-layer-1"></div>
-                <div class="img-layer-2">so<br>cute!</div>
+            <div class="scrolling-wrapper">
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="homepic3.jpg" alt="Style 3">
+                    </div>
+                    <span class="caption">Noir Whimsy</span>
+                </div>
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="homepic4.jpg" alt="Style 4">
+                    </div>
+                    <span class="caption">Fuchsia Frost</span>
+                </div>
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="homepic5.jpg" alt="Style 5">
+                    </div>
+                    <span class="caption">Aquatic Pop</span>
+                </div>
+                <div class="card">
+                    <div class="card-img-wrapper">
+                        <img src="homepic7.jpg" alt="Style 6">
+                    </div>
+                    <span class="caption">UNEARTHED EUPHORIA</span>
+                </div>
             </div>
-        </section>
-
-        <section id="shop">
-            <h2>Trending in the Studio 🛍️</h2>
-            <p style="font-family: 'Caveat', cursive; font-size: 1.5rem; color: var(--hot-pink);">Discover what the girlies are generating right now...</p>
-            <div class="features-grid">
-                <div class="polaroid-card"><div class="photo-placeholder" style="background: var(--sky-blue);">Item 1</div></div>
-                <div class="polaroid-card"><div class="photo-placeholder" style="background: var(--lavender);">Item 2</div></div>
-                <div class="polaroid-card"><div class="photo-placeholder" style="background: var(--baby-pink);">Item 3</div></div>
-            </div>
-            <br>
-            <button>View Full Closet</button>
         </section>
     </main>
 
-    <footer>
-        <h2>WhimSleek.</h2>
-        <p style="font-family: 'Caveat', cursive; font-size: 1.5rem;">Your interactive wardrobe studio xoxo</p>
-        <p style="font-size: 12px; margin-top: 30px;">&copy; 2026 WhimSleek. For educational purposes. 🦋</p>
+<footer class="mega-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>WhimSleek</h3>
+                <p>The digital stylist for the modern visionary.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Partnerships</h4>
+                <a href="#">Shein Exclusive</a>
+                <a href="#">Pinterest Board</a>
+                <a href="#">Vogue Digital</a>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <a href="#">Virtual Fitting Room</a>
+                <a href="#">Personal Stylist</a>
+                <a href="#">Wardrobe Management</a>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="#">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 WhimSleek. All Rights Reserved. Designed by Steven.</p>
+            <p style="font-size: 0.85em; opacity: 0.7; margin-top: 8px;">
+                <em>Disclaimer: This website is a mock-up created for educational and school purposes only. No copyright infringement intended. Not a real commercial store.</em>
+            </p>
+        </div>
     </footer>
 
-    <script>
-        document.addEventListener('mousemove', function(e) {
-            // Only create a sparkle every few pixels to avoid lagging the browser
-            if (Math.random() > 0.85) { 
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                
-                // Randomly pick a whimsical emoji
-                const emojis = ['✨', '💖', '⭐', '🌸'];
-                sparkle.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-                
-                // Position exactly at the mouse cursor
-                sparkle.style.left = e.pageX + 'px';
-                sparkle.style.top = e.pageY + 'px';
-                
-                document.body.appendChild(sparkle);
-                
-                // Remove the sparkle from the HTML after the animation finishes
-                setTimeout(() => {
-                    sparkle.remove();
-                }, 1000);
-            }
-        });
-    </script>
+    <button id="audio-toggle" class="audio-btn">Sound: Off</button>
+    <audio id="ambient-audio" loop>
+        <source src="ambient.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
 </body>
 </html>
