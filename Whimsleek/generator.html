@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhimSleek | Curate Your Vibe</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="preloader">
+        <h1 class="preloader-logo">WhimSleek</h1>
+    </div>
+
+    <div id="custom-cursor"></div>
+
+    <nav id="main-nav" class="nav-scrolled">
+        <div class="logo">
+            <a href="index.html">WhimSleek</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="generator.html" style="color: var(--accent-color);">Outfit Generator</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="orders.html">Orders</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <main class="generator-page">
+        <section class="generator-container fade-in">
+            <div class="generator-controls">
+                <h2>Curate Your Vibe</h2>
+                <p>Select your mood and let our digital stylist craft your perfect silhouette.</p>
+                
+                <div class="input-group">
+                    <label for="vibe-select">Desired Aesthetic</label>
+                    <select id="vibe-select" class="sleek-select">
+                        <option value="random">Surprise Me (Random)</option>
+                        <option value="y2k">Y2K</option>
+                        <option value="casual">Casual</option>
+                        <option value="coquette">Coquette</option>
+                        <option value="grunge">Grunge</option>
+                    </select>
+                </div>
+
+                <button id="generate-btn" class="btn-outline btn-gold">Generate Outfit</button>
+            </div>
+
+            <div class="generator-result">
+                
+                <div id="loading-overlay" class="active">
+                    <span class="loader-text">Waiting for your vibe...</span>
+                </div>
+
+                <div id="result-display" class="hidden-result">
+                    <h3 id="result-title">Your Curated Look</h3>
+                    
+                    <div class="outfit-grid">
+                        <div class="outfit-item" id="item-top">
+                            <img id="img-top" src="" alt="Top">
+                            <span>Top</span>
+                        </div>
+                        <div class="outfit-item" id="item-bottom">
+                            <img id="img-bottom" src="" alt="Bottom">
+                            <span>Bottom</span>
+                        </div>
+                        <div class="outfit-item hidden" id="item-dress">
+                            <img id="img-dress" src="" alt="Dress">
+                            <span>Dress</span>
+                        </div>
+                        <div class="outfit-item" id="item-shoes">
+                            <img id="img-shoes" src="" alt="Shoes">
+                            <span>Shoes</span>
+                        </div>
+                        <div class="outfit-item" id="item-accessories">
+                            <img id="img-accessories" src="" alt="Accessories">
+                            <span>Accessories</span>
+                        </div>
+                    </div>
+
+                    <div class="result-actions" style="display: flex; gap: 15px; margin-top: 30px;">
+                        <button class="btn-outline btn-gold" style="flex: 1; padding: 12px; font-size: 0.75rem;">Add to Cart</button>
+                        <button class="btn-outline" style="flex: 1; padding: 12px; font-size: 0.75rem;">Save Look</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="mega-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>WhimSleek</h3>
+                <p>The digital stylist for the modern visionary.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Partnerships</h4>
+                <a href="#">Shein Exclusive</a>
+                <a href="#">Pinterest Board</a>
+                <a href="#">Vogue Digital</a>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <a href="#">Virtual Fitting Room</a>
+                <a href="#">Personal Stylist</a>
+                <a href="#">Wardrobe Management</a>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="#">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 WhimSleek. All Rights Reserved. Designed by Steven.</p>
+            <p style="font-size: 0.85em; opacity: 0.7; margin-top: 8px;">
+                <em>Disclaimer: This website is a mock-up created for educational and school purposes only. No copyright infringement intended. Not a real commercial store.</em>
+            </p>
+        </div>
+    </footer>
+
+    <button id="audio-toggle" class="audio-btn">Sound: Off</button>
+    <audio id="ambient-audio" loop>
+        <source src="ambient.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
