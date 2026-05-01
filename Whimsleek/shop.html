@@ -166,11 +166,35 @@
         </div>
     </footer>
 
-    <button id="audio-toggle" class="audio-btn">Sound: Off</button>
-    <audio id="ambient-audio" loop>
-        <source src="ambient.mp3" type="audio/mpeg">
-    </audio>
+ <a href="orders.html" id="floating-cart-btn" class="floating-btn">
+        <span>Cart</span>
+        <span id="cart-badge" class="badge">0</span>
+    </a>
 
     <script src="script.js"></script>
+    <script>
+        // CART COUNTER LOGIC
+        let cartCount = 0;
+        const cartBadge = document.getElementById('cart-badge');
+        const addToCartBtns = document.querySelectorAll('.product-overlay .btn-outline');
+
+        addToCartBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                cartCount++;
+                cartBadge.innerText = cartCount;
+                
+                // Pa-cool effect: magiibang text saglit para alam ng user na na-add na
+                const originalText = btn.innerText;
+                btn.innerText = "Added!";
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                }, 1000);
+            });
+        });
+<script src="script.js"></script>
+    <script>
+        // CART COUNTER LOGIC
+        // ... (cart code mo) ...
+    </script>
 </body>
 </html>
