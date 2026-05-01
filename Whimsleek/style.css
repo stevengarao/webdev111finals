@@ -1,0 +1,179 @@
+/* LUXURY COLOR PALETTE & TYPOGRAPHY */
+:root {
+    --bg-color: #050505;
+    --text-primary: #ffffff;
+    --text-muted: #888888;
+    --accent-color: #d4af37;
+    --font-heading: 'Cinzel', serif;
+    --font-body: 'Montserrat', sans-serif;
+}
+
+/* 3. CUSTOM CURSOR - Itago ang original cursor */
+body, a, button, .btn-outline {
+    cursor: none !important; 
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+
+/* 1. EXCLUSIVE REVEAL PRELOADER */
+#preloader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    background-color: var(--bg-color); z-index: 9999;
+    display: flex; justify-content: center; align-items: center;
+    transition: opacity 1.5s ease-in-out, visibility 1.5s ease-in-out;
+}
+
+.preloader-logo {
+    font-family: var(--font-heading); font-size: 3rem; letter-spacing: 5px;
+    color: var(--text-primary); opacity: 0; /* Starts invisible */
+    transition: opacity 2s ease;
+}
+
+.preloader-hidden {
+    opacity: 0 !important; visibility: hidden;
+}
+
+/* CUSTOM CURSOR STYLING */
+#custom-cursor {
+    position: fixed; top: 0; left: 0; width: 15px; height: 15px;
+    border: 1px solid var(--accent-color); border-radius: 50%;
+    pointer-events: none; z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+    mix-blend-mode: difference; /* Para magbago kulay kapag tumapat sa white na background */
+}
+
+.cursor-hover {
+    width: 40px !important; height: 40px !important;
+    background-color: rgba(212, 175, 55, 0.2);
+}
+
+/* DYNAMIC MINIMALIST NAVIGATION */
+nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 5vw; position: fixed; top: 0; width: 90%; z-index: 1000;
+    transition: top 0.4s ease, background-color 0.4s ease, padding 0.4s ease;
+}
+
+.nav-scrolled {
+    background-color: rgba(5, 5, 5, 0.95); backdrop-filter: blur(10px);
+    padding: 15px 5vw; border-bottom: 1px solid #222;
+}
+
+.nav-hidden { top: -100px; }
+
+.logo a { font-family: var(--font-heading); font-size: 1.8rem; color: var(--text-primary); text-decoration: none; letter-spacing: 3px; }
+nav ul { list-style: none; display: flex; gap: 30px; margin: 0; }
+nav ul li a { color: var(--text-primary); text-decoration: none; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: color 0.3s ease; }
+nav ul li a:hover { color: var(--accent-color); }
+
+/* HERO SECTION - Updated for Parallax */
+.hero { position: relative; height: 100vh; display: flex; align-items: center; padding-left: 10vw; overflow: hidden; /* Important for parallax */ }
+
+/* Para sa parallax, dinagdagan natin ng extra height (120%) para kapag gumalaw, hindi makita yung dulo */
+.hero-bg-placeholder { position: absolute; top: -10%; left: 0; width: 100%; height: 120%; z-index: -1; will-change: transform; }
+
+.hero-content { max-width: 600px; }
+.hero h1 { font-family: var(--font-heading); font-size: 4.5rem; font-weight: 400; line-height: 1.1; margin: 0 0 20px 0; }
+.hero p { font-weight: 300; color: #f0f0f0; font-size: 1.1rem; margin-bottom: 40px; max-width: 400px; }
+
+.btn-outline {
+    display: inline-block; padding: 15px 40px; border: 1px solid var(--text-primary);
+    color: var(--text-primary); text-decoration: none; text-transform: uppercase;
+    letter-spacing: 2px; font-size: 0.8rem; transition: all 0.4s ease;
+}
+.btn-outline:hover { background-color: var(--text-primary); color: var(--bg-color); }
+
+/* Dark tint sa ibabaw ng video para laging basa ang text */
+.hero-bg-placeholder::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(5, 5, 5, 0.2), rgba(5, 5, 5, 0.8));
+    z-index: 1; /* Ilalagay yung shadow sa ibabaw ng video pero sa ilalim ng text */
+}
+
+/* GALLERY SECTION */
+.gallery { padding: 150px 10vw; }
+.gallery-text { text-align: center; margin-bottom: 80px; }
+.gallery-text h2 { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 400; }
+.gallery-text p { color: #a9a9a9; max-width: 600px; margin: 0 auto; font-weight: 300; }
+.gallery-grid { display: flex; gap: 50px; justify-content: center; }
+.editorial-image { width: 45%; }
+
+/* 2. CINEMATIC IMAGE HOVER (Zoom effect) */
+.img-placeholder { height: 600px; background-color: #1a1a1a; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; overflow: hidden; }
+.img-placeholder img { transition: transform 2s ease; }
+.editorial-image:hover .img-placeholder img { transform: scale(1.08); /* Slow elegant zoom */ }
+
+.caption { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); display: block; margin-top: 10px; }
+
+/* HORIZONTAL SHOWCASE SECTION */
+.horizontal-showcase { padding: 100px 0 150px 10vw; border-top: 1px solid #1a1a1a; }
+.showcase-text { display: flex; justify-content: space-between; align-items: flex-end; padding-right: 10vw; margin-bottom: 50px; }
+.showcase-text h2 { font-family: var(--font-heading); font-size: 2rem; font-weight: 400; margin: 0; }
+.link-discover { color: var(--text-muted); text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; transition: color 0.3s; }
+.link-discover:hover { color: var(--text-primary); }
+.scrolling-wrapper { display: flex; gap: 40px; overflow-x: auto; padding-right: 10vw; padding-bottom: 20px; scrollbar-width: thin; scrollbar-color: #333 #050505; }
+.scrolling-wrapper::-webkit-scrollbar { height: 6px; }
+.scrolling-wrapper::-webkit-scrollbar-track { background: #050505; }
+.scrolling-wrapper::-webkit-scrollbar-thumb { background-color: #333; border-radius: 10px; }
+
+.card { min-width: 400px; display: flex; flex-direction: column; }
+.card-img-wrapper { overflow: hidden; height: 500px; margin-bottom: 15px; }
+.card img { width: 100%; height: 100%; object-fit: cover; transition: transform 2s ease; }
+.card:hover img { transform: scale(1.08); }
+
+/* MEGA FOOTER */
+.mega-footer { background-color: #0a0a0a; padding: 80px 10vw 40px 10vw; border-top: 1px solid #222; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; margin-bottom: 60px; }
+.footer-col h3 { font-family: var(--font-heading); font-size: 1.8rem; letter-spacing: 3px; margin-top: 0; }
+.footer-col h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-primary); margin-bottom: 20px; }
+.footer-col p { color: var(--text-muted); font-size: 0.9rem; }
+.footer-col a { display: block; color: var(--text-muted); text-decoration: none; font-size: 0.85rem; margin-bottom: 15px; transition: color 0.3s; }
+.footer-col a:hover { color: var(--text-primary); }
+.footer-bottom { text-align: center; border-top: 1px solid #222; padding-top: 30px; color: #555; font-size: 0.8rem; }
+
+/* 5. AUDIO BUTTON */
+.audio-btn {
+    position: fixed; bottom: 30px; right: 30px; z-index: 1000;
+    background: rgba(5, 5, 5, 0.5); border: 1px solid var(--text-muted);
+    color: var(--text-muted); padding: 10px 20px; backdrop-filter: blur(5px);
+    font-family: var(--font-body); font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 2px; border-radius: 30px; transition: all 0.3s ease;
+}
+.audio-btn:hover { border-color: var(--text-primary); color: var(--text-primary); }
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 768px) {
+    /* Ayusin ang navigation sa phone */
+    nav { flex-direction: column; gap: 15px; padding: 15px 5vw; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 15px; }
+    
+    /* Paliitin ang Hero text at i-center */
+    .hero { padding-left: 5vw; justify-content: center; text-align: center; }
+    .hero h1 { font-size: 3rem; }
+    .hero-content { z-index: 2; }
+    
+    /* I-stack ang images sa gallery imbes na magkatabi */
+    .gallery-grid { flex-direction: column; align-items: center; }
+    .editorial-image { width: 100%; max-width: 400px; margin-bottom: 30px; }
+    
+    /* I-stack ang footer columns pababa */
+    .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+}
+
+/* --- HIDE CUSTOM CURSOR ON TOUCH DEVICES --- */
+@media (pointer: coarse) {
+    #custom-cursor { display: none !important; }
+    body, a, button, .btn-outline { cursor: auto !important; }
+}
+
