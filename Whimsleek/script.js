@@ -88,3 +88,124 @@ document.addEventListener("DOMContentLoaded", () => {
         lastScrollTop = scrollTop;
     });
 });
+
+// --- LUXURY OUTFIT GENERATOR LOGIC ---
+const generateBtn = document.getElementById("generate-btn");
+
+if (generateBtn) {
+    const vibeSelect = document.getElementById("vibe-select");
+    const loadingOverlay = document.getElementById("loading-overlay");
+    const resultDisplay = document.getElementById("result-display");
+    const loaderText = document.querySelector(".loader-text");
+
+    // Elements para sa Outfit Grid
+    const itemTop = document.getElementById("item-top");
+    const itemBottom = document.getElementById("item-bottom");
+    const itemDress = document.getElementById("item-dress");
+    
+    const imgTop = document.getElementById("img-top");
+    const imgBottom = document.getElementById("img-bottom");
+    const imgDress = document.getElementById("img-dress");
+    const imgShoes = document.getElementById("img-shoes");
+    const imgAccessories = document.getElementById("img-accessories");
+
+    // ✨ MAGIC SHORTCUT FUNCTION ✨
+    // Imbes na i-type mo isa-isa, ito na ang kusang gagawa ng 1 to 50 na pangalan!
+    const generateList = (prefix, count) => {
+        let arr = [];
+        for (let i = 1; i <= count; i++) {
+            arr.push(`${prefix}${i}.jpg`);
+        }
+        return arr;
+    };
+
+    // --- BAGONG WARDROBE INVENTORY SYSTEM ---
+    const inventory = {
+        y2k: {
+            tops: generateList("y2ktop", 50),       // Auto-generate: y2ktop1.jpg hanggang y2ktop50.jpg
+            bottoms: generateList("y2kbottom", 50), // Auto-generate: y2kbottom1.jpg hanggang y2kbottom50.jpg
+            dresses: generateList("y2kdress", 50), 
+            shoes: generateList("y2kshoes", 50),
+            accessories: generateList("y2kacc", 50)
+        },
+        coquette: {
+            tops: generateList("coquettetop", 50),
+            bottoms: generateList("coquettebottom", 50),
+            dresses: generateList("coquettedress", 50),
+            shoes: generateList("coquetteshoes", 50),
+            accessories: generateList("coquetteacc", 50)
+        },
+        grunge: {
+            tops: generateList("grungetop", 50),
+            bottoms: generateList("grungebottom", 50),
+            dresses: generateList("grungedress", 50), 
+            shoes: generateList("grungeshoes", 50),
+            accessories: generateList("grungeacc", 50)
+        },
+        casual: {
+            tops: generateList("casualtop", 50),
+            bottoms: generateList("casualbottom", 50),
+            dresses: generateList("casualdress", 50),
+            shoes: generateList("casualshoes", 50),
+            accessories: generateList("casualacc", 50)
+        }
+    };
+
+    // Helper function para kumuha ng random item sa loob ng array
+    const getRandomItem = (arr) => {
+        if (!arr || arr.length === 0) return null;
+        return arr[Math.floor(Math.random() * arr.length)];
+    };
+
+    generateBtn.addEventListener("click", () => {
+        // Ipakita ang "Curating..." screen
+        loadingOverlay.classList.add("active");
+        resultDisplay.classList.add("hidden-result");
+        loaderText.innerText = "Curating...";
+
+        setTimeout(() => {
+            let selectedVibe = vibeSelect.value;
+            
+            // Kung "Surprise Me (Random)" ang pinili
+            if (selectedVibe === "random") {
+                const vibesList = Object.keys(inventory); // Kukunin lahat ng vibe names
+                selectedVibe = vibesList[Math.floor(Math.random() * vibesList.length)];
+            }
+
+            const currentWardrobe = inventory[selectedVibe];
+
+            // Aalamin ng system kung dress ba o top/bottom ang ipapakita
+            let isDress = false;
+            if (currentWardrobe.dresses.length > 0 && currentWardrobe.tops.length > 0) {
+                isDress = Math.random() > 0.5; 
+            } else if (currentWardrobe.dresses.length > 0) {
+                isDress = true; // Force dress kung walang tops
+            }
+
+            // PAGLALAGAY NG PICTURES
+            if (isDress) {
+                itemTop.classList.add("hidden");
+                itemBottom.classList.add("hidden");
+                itemDress.classList.remove("hidden");
+                
+                imgDress.src = getRandomItem(currentWardrobe.dresses);
+            } else {
+                itemDress.classList.add("hidden");
+                itemTop.classList.remove("hidden");
+                itemBottom.classList.remove("hidden");
+                
+                imgTop.src = getRandomItem(currentWardrobe.tops);
+                imgBottom.src = getRandomItem(currentWardrobe.bottoms);
+            }
+
+            // Laging may shoes at accessories
+            imgShoes.src = getRandomItem(currentWardrobe.shoes);
+            imgAccessories.src = getRandomItem(currentWardrobe.accessories);
+
+            // Alisin yung loading screen at ipakita na yung result
+            loadingOverlay.classList.remove("active");
+            resultDisplay.classList.remove("hidden-result");
+            
+        }, 1500);
+    });
+}
