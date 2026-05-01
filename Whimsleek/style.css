@@ -177,3 +177,56 @@ nav ul li a:hover { color: var(--accent-color); }
     body, a, button, .btn-outline { cursor: auto !important; }
 }
 
+/* --- LUXURY OUTFIT GENERATOR --- */
+.generator-page { 
+    padding-top: 140px; /* Space para sa nav */
+    padding-bottom: 100px; /* Space para bago mag-footer */
+    min-height: 100vh; 
+    display: flex; 
+    align-items: flex-start; /* ITO YUNG FIX SA SCROLLING! Pinalitan natin yung 'center' */
+    justify-content: center; 
+    background-color: #000; 
+    color: #fff;
+}
+
+.generator-container { display: flex; width: 90%; max-width: 1100px; background: #080808; border: 1px solid #222; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+
+/* Left Controls */
+.generator-controls { flex: 1; padding: 60px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid #222; }
+.generator-controls h2 { font-family: 'Cinzel', serif; font-size: 2.5rem; margin-top: 0; margin-bottom: 15px;}
+.generator-controls p { font-family: 'Montserrat', sans-serif; color: #888; margin-bottom: 40px; font-size: 0.9rem; line-height: 1.6;}
+
+.input-group { margin-bottom: 30px; }
+.input-group label { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: #888; margin-bottom: 10px; }
+.sleek-select { width: 100%; padding: 15px; background: transparent; border: 1px solid #333; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 1rem; cursor: pointer; outline: none; transition: border-color 0.3s; appearance: none; }
+.sleek-select:focus { border-color: #d4af37; } /* Gold focus */
+.sleek-select option { background: #050505; color: #fff; }
+
+.btn-gold { border-color: #d4af37; color: #d4af37; width: 100%; text-align: center; margin-top: 20px; font-family: 'Montserrat', sans-serif; letter-spacing: 2px; padding: 15px; background: transparent; transition: 0.3s; cursor: pointer; text-transform: uppercase; font-size: 0.8rem;}
+.btn-gold:hover { background-color: #d4af37; color: #000; }
+
+/* Right Result Area */
+.generator-result { flex: 1.2; background: #0f0f0f; position: relative; padding: 40px; display: flex; align-items: center; justify-content: center;}
+
+#loading-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #0f0f0f; display: flex; justify-content: center; align-items: center; z-index: 10; transition: opacity 0.5s ease; }
+#loading-overlay:not(.active) { opacity: 0; pointer-events: none; }
+.loader-text { font-family: 'Cinzel', serif; letter-spacing: 3px; color: #d4af37; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
+
+#result-display { width: 100%; max-width: 450px; text-align: center; transition: opacity 0.5s ease; }
+.hidden-result { opacity: 0; pointer-events: none; }
+#result-title { font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 20px; color: #fff; font-weight: 400;}
+
+/* Sleek Image Grid */
+.outfit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.outfit-item { position: relative; background: #1a1a1a; border: 1px solid #333; aspect-ratio: 1; display: flex; justify-content: center; align-items: center; overflow: hidden; }
+/* Kung gusto mo mas malaki yung dress box kapag lumabas: */
+#item-dress { grid-column: span 2; aspect-ratio: 2/1.2; } 
+
+.outfit-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.outfit-item:hover img { transform: scale(1.05); }
+
+.outfit-item span { position: absolute; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.8); color: #d4af37; font-family: 'Montserrat', sans-serif; font-size: 0.6rem; padding: 8px 0; text-transform: uppercase; letter-spacing: 2px; text-align: center; border-top: 1px solid #333;}
+
+.hidden { display: none !important; }
+
