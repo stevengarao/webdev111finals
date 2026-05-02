@@ -143,32 +143,32 @@ if (generateBtn) {
     // --- BAGONG WARDROBE INVENTORY SYSTEM ---
     const inventory = {
         y2k: {
-            tops: generateList("y2ktop", 50),       
-            bottoms: generateList("y2kbottom", 50), 
-            dresses: generateList("y2kdress", 50), 
-            shoes: generateList("y2kshoes", 50),
-            accessories: generateList("y2kacc", 50)
+            tops: generateList("y2ktop", 20),       
+            bottoms: generateList("y2kbottom", ), 
+            dresses: generateList("y2kdress", 20), 
+            shoes: generateList("y2kshoes", 20),
+            accessories: generateList("y2kacc", 20)
         },
         coquette: {
-            tops: generateList("coquettetop", 50),
-            bottoms: generateList("coquettebottom", 50),
-            dresses: generateList("coquettedress", 50),
-            shoes: generateList("coquetteshoes", 50),
-            accessories: generateList("coquetteacc", 50)
+            tops: generateList("coquettetop", 20),
+            bottoms: generateList("coquettebottom", 20),
+            dresses: generateList("coquettedress", 20),
+            shoes: generateList("coquetteshoes", 20),
+            accessories: generateList("coquetteacc", 20)
         },
         grunge: {
-            tops: generateList("grungetop", 50),
-            bottoms: generateList("grungebottom", 50),
-            dresses: generateList("grungedress", 50), 
-            shoes: generateList("grungeshoes", 50),
-            accessories: generateList("grungeacc", 50)
+            tops: generateList("grungetop", 20),
+            bottoms: generateList("grungebottom", 20),
+            dresses: generateList("grungedress", 20), 
+            shoes: generateList("grungeshoes", 20),
+            accessories: generateList("grungeacc", 20)
         },
         casual: {
-            tops: generateList("casualtop", 50),
-            bottoms: generateList("casualbottom", 50),
-            dresses: generateList("casualdress", 50),
-            shoes: generateList("casualshoes", 50),
-            accessories: generateList("casualacc", 50)
+            tops: generateList("casualtop", 20),
+            bottoms: generateList("casualbottom", 20),
+            dresses: generateList("casualdress", 20),
+            shoes: generateList("casualshoes", 20),
+            accessories: generateList("casualacc", 20)
         }
     };
 
@@ -283,6 +283,106 @@ document.addEventListener("DOMContentLoaded", () => {
         prevBtn.addEventListener("click", function () {
             let items = document.querySelectorAll(".aesthetic-carousel-section .item");
             document.querySelector(".aesthetic-carousel-section .slide").prepend(items[items.length - 1]);
+        });
+    }
+});
+
+// ==========================================================================
+// ✨ CART & CHECKOUT LOGIC (ORDERS.HTML) ✨
+// ==========================================================================
+document.addEventListener("DOMContentLoaded", () => {
+    const checkboxes = document.querySelectorAll('.cart-checkbox');
+    const subtotalDisplay = document.getElementById('subtotal-display');
+    const totalDisplay = document.getElementById('total-display');
+    const checkoutBtn = document.getElementById('checkout-btn');
+    
+    const receiptModal = document.getElementById('receipt-modal');
+    const receiptList = document.getElementById('receipt-items-list');
+    const receiptTotalPrice = document.getElementById('receipt-total-price');
+    const closeReceiptBtn = document.getElementById('close-receipt-btn');
+
+    // Function to calculate total price
+    function calculateTotal() {
+        if (!subtotalDisplay) return; // Only run if on orders.html
+
+        let total = 0;
+        let checkedCount = 0;
+
+        checkboxes.forEach(box => {
+            if (box.checked) {
+                total += parseFloat(box.getAttribute('data-price'));
+                checkedCount++;
+            }
+        });
+
+        // Update display with commas
+        const formattedTotal = '₱' + total.toLocaleString('en-US');
+        subtotalDisplay.innerText = formattedTotal;
+        totalDisplay.innerText = formattedTotal;
+
+        // Disable checkout button kung walang nakacheck
+        if (checkedCount === 0) {
+            checkoutBtn.disabled = true;
+            checkoutBtn.innerText = "Select items to checkout";
+        } else {
+            checkoutBtn.disabled = false;
+            checkoutBtn.innerText = "Checkout Selected";
+        }
+    }
+
+    // Add event listeners to all checkboxes
+    if (checkboxes.length > 0) {
+        checkboxes.forEach(box => {
+            box.addEventListener('change', calculateTotal);
+        });
+        calculateTotal(); // Initial computation on page load
+    }
+
+    // CHECKOUT PROCESS
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', () => {
+            let receiptHTML = '';
+            let finalTotal = 0;
+
+            // Gather all checked items
+            checkboxes.forEach(box => {
+                if (box.checked) {
+                    const itemName = box.getAttribute('data-name');
+                    const itemPrice = parseFloat(box.getAttribute('data-price'));
+                    finalTotal += itemPrice;
+
+                    // Add to receipt display
+                    receiptHTML += `
+                        <div class="receipt-list-item">
+                            <span>1x ${itemName}</span>
+                            <span>₱${itemPrice.toLocaleString('en-US')}</span>
+                        </div>
+                    `;
+
+                    // Remove the item completely from the cart layout smoothly
+                    const cartItemDiv = box.closest('.cart-item');
+                    cartItemDiv.style.opacity = '0';
+                    cartItemDiv.style.transform = 'scale(0.9)';
+                    setTimeout(() => {
+                        cartItemDiv.remove();
+                        calculateTotal(); // Recalculate para maging 0 yung cart if ever
+                    }, 500);
+                }
+            });
+
+            // Populate Modal
+            receiptList.innerHTML = receiptHTML;
+            receiptTotalPrice.innerText = '₱' + finalTotal.toLocaleString('en-US');
+
+            // Show Receipt Modal
+            receiptModal.classList.remove('hidden');
+        });
+    }
+
+    // CLOSE RECEIPT
+    if (closeReceiptBtn) {
+        closeReceiptBtn.addEventListener('click', () => {
+            receiptModal.classList.add('hidden');
         });
     }
 });
