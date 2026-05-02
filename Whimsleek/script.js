@@ -45,6 +45,19 @@ document.addEventListener("DOMContentLoaded", () => {
             isPlaying = !isPlaying;
         });
     }
+    
+    // --- 6. AUTO-SCROLL INFINITE LOOP LOGIC ---
+    const carouselTrack = document.getElementById("carousel-track");
+    
+    // Iche-check kung nasa index.html tayo para hindi mag-error sa ibang pages
+    if (carouselTrack) {
+        // I-clone natin lahat ng cards at idikit sa dulo para seamless yung loop
+        const cards = Array.from(carouselTrack.children);
+        cards.forEach(card => {
+            const clone = card.cloneNode(true);
+            carouselTrack.appendChild(clone);
+        });
+    }
 
     // --- FADE-IN ANIMATION LOGIC (Existing mo to) ---
     const observerOptions = { root: null, rootMargin: "0px", threshold: 0.15 };
@@ -119,7 +132,6 @@ if (generateBtn) {
     const imgAccessories = document.getElementById("img-accessories");
 
     // ✨ MAGIC SHORTCUT FUNCTION ✨
-    // Imbes na i-type mo isa-isa, ito na ang kusang gagawa ng 1 to 50 na pangalan!
     const generateList = (prefix, count) => {
         let arr = [];
         for (let i = 1; i <= count; i++) {
@@ -131,8 +143,8 @@ if (generateBtn) {
     // --- BAGONG WARDROBE INVENTORY SYSTEM ---
     const inventory = {
         y2k: {
-            tops: generateList("y2ktop", 50),       // Auto-generate: y2ktop1.jpg hanggang y2ktop50.jpg
-            bottoms: generateList("y2kbottom", 50), // Auto-generate: y2kbottom1.jpg hanggang y2kbottom50.jpg
+            tops: generateList("y2ktop", 50),       
+            bottoms: generateList("y2kbottom", 50), 
             dresses: generateList("y2kdress", 50), 
             shoes: generateList("y2kshoes", 50),
             accessories: generateList("y2kacc", 50)
@@ -177,7 +189,7 @@ if (generateBtn) {
             
             // Kung "Surprise Me (Random)" ang pinili
             if (selectedVibe === "random") {
-                const vibesList = Object.keys(inventory); // Kukunin lahat ng vibe names
+                const vibesList = Object.keys(inventory); 
                 selectedVibe = vibesList[Math.floor(Math.random() * vibesList.length)];
             }
 
@@ -188,7 +200,7 @@ if (generateBtn) {
             if (currentWardrobe.dresses.length > 0 && currentWardrobe.tops.length > 0) {
                 isDress = Math.random() > 0.5; 
             } else if (currentWardrobe.dresses.length > 0) {
-                isDress = true; // Force dress kung walang tops
+                isDress = true; 
             }
 
             // PAGLALAGAY NG PICTURES
@@ -254,3 +266,23 @@ if (filterBtns.length > 0) {
         });
     });
 }
+
+// ==========================================================================
+// ✨ AESTHETIC CAROUSEL LOGIC ✨
+// ==========================================================================
+document.addEventListener("DOMContentLoaded", () => {
+    const nextBtn = document.querySelector(".next");
+    const prevBtn = document.querySelector(".prev");
+
+    if (nextBtn && prevBtn) {
+        nextBtn.addEventListener("click", function () {
+            let items = document.querySelectorAll(".aesthetic-carousel-section .item");
+            document.querySelector(".aesthetic-carousel-section .slide").appendChild(items[0]);
+        });
+
+        prevBtn.addEventListener("click", function () {
+            let items = document.querySelectorAll(".aesthetic-carousel-section .item");
+            document.querySelector(".aesthetic-carousel-section .slide").prepend(items[items.length - 1]);
+        });
+    }
+});
