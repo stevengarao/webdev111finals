@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhimSleek | About Us</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* EXTRA CSS FOR ABOUT PAGE ONLY (Using variables from your style.css) */
+        .about-container {
+            max-width: 1200px;
+            margin: 160px auto 80px; /* Added top margin para hindi matakpan ng fixed nav */
+            padding: 0 5vw;
+            display: flex;
+            align-items: center;
+            gap: 80px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(20px); }
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h1 {
+            font-family: var(--font-heading);
+            font-size: 4rem;
+            margin-bottom: 5px;
+            line-height: 1.1;
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+
+        .about-text h1 span {
+            color: var(--accent-color);
+            font-style: italic;
+        }
+
+        .about-slogan {
+            font-family: var(--font-heading);
+            color: var(--accent-color);
+            letter-spacing: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .about-text p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .about-image {
+            flex: 1;
+            position: relative;
+        }
+
+        /* INAPPLY NATIN YUNG CINEMATIC ZOOM MO SA INDEX DITO SA ABOUT PICS */
+        .about-img-wrapper {
+            width: 100%;
+            aspect-ratio: 4/5;
+            overflow: hidden;
+            border-radius: 5px;
+            box-shadow: -20px 20px 0px rgba(212, 175, 55, 0.15); /* Subtle gold shadow */
+        }
+
+        .about-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 2s ease;
+        }
+
+        .about-container:hover .about-img-wrapper img {
+            transform: scale(1.08); /* Slow elegant zoom kapag tinapatan */
+        }
+
+        /* SOCIAL MEDIA SECTION */
+        .social-section {
+            text-align: center;
+            padding: 100px 20px;
+            background-color: #0a0a0a; /* Slightly lighter than pure black index bg */
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .social-section h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+
+        .social-section p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .social-icons a {
+            color: var(--text-primary);
+            font-size: 2rem;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        /* HOVER EFFECTS - MAG GO-GOLD AND GLOW! */
+        .social-icons a:hover {
+            color: var(--accent-color);
+            transform: translateY(-10px) scale(1.1);
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.5));
+        }
+    </style>
+</head>
+<body>
+
+    <div id="preloader">
+        <h1 class="preloader-logo">WhimSleek</h1>
+    </div>
+
+    <div id="custom-cursor"></div>
+
+    <nav id="main-nav">
+        <div class="logo">
+            <a href="index.html">WhimSleek</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="generator.html">Outfit Generator</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="orders.html">Orders</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="about.html" class="active" style="color: var(--accent-color);">About Us</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <section class="about-container">
+        <div class="about-text">
+            <h1>Redefining <br><span>Elegance.</span></h1>
+            <div class="about-slogan">Your Vision, Inspired.</div>
+            
+            <p>Founded in 2026, WhimSleek is more than just a fashion destination; it is an exclusive vault for the modern visionary. We believe that true luxury lies in self-expression, blending timeless sophistication with contemporary allure.</p>
+            <p>Our curated collections and cutting-edge Outfit Generator are designed to empower you. Whether you're exploring our archives or creating your next signature look, WhimSleek guarantees an aesthetic experience tailored to perfection.</p>
+        </div>
+        <div class="about-image">
+            <div class="about-img-wrapper">
+                <img src="aboutpic.jpg" alt="WhimSleek Fashion">
+            </div>
+        </div>
+    </section>
+
+    <section class="social-section">
+        <h2>Join The Visionaries</h2>
+        <p>Follow our journey and stay updated with the latest in the vault.</p>
+        
+        <div class="social-icons">
+            <a href="#" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" target="_blank" title="Pinterest"><i class="fab fa-pinterest"></i></a>
+            <a href="#" target="_blank" title="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+    </section>
+
+    <footer class="mega-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>WhimSleek</h3>
+                <p>The digital stylist for the modern visionary.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Partnerships</h4>
+                <a href="#">Shein Exclusive</a>
+                <a href="#">Pinterest Board</a>
+                <a href="#">Vogue Digital</a>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <a href="#">Virtual Fitting Room</a>
+                <a href="#">Personal Stylist</a>
+                <a href="#">Wardrobe Management</a>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="#">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 WhimSleek. All Rights Reserved. Designed by Steven.</p>
+            <p style="font-size: 0.85em; opacity: 0.7; margin-top: 8px;">
+                <em>Disclaimer: This website is a mock-up created for educational and school purposes only. No copyright infringement intended. Not a real commercial store.</em>
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

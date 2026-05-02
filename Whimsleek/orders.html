@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhimSleek | Your Cart</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-theme">
+
+    <div id="preloader">
+        <h1 class="preloader-logo">WhimSleek</h1>
+    </div>
+
+    <div id="custom-cursor"></div>
+
+    <nav id="main-nav">
+        <div class="logo">
+            <a href="index.html">WhimSleek</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="generator.html">Outfit Generator</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="orders.html" style="color: var(--accent-color); font-weight: 600;">Orders</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <main class="cart-page fade-in">
+        <section class="cart-header">
+            <h1>Your Archive</h1>
+            <p>Review your curated pieces before making them yours.</p>
+        </section>
+
+        <section class="cart-container">
+            <div class="cart-items" id="cart-items-container">
+                
+                <div class="cart-item">
+                    <input type="checkbox" class="cart-checkbox" data-price="2499" data-name="Pearl Silk Blouse" checked>
+                    <div class="cart-img-box">
+                        <img src="shoptop1.jpg" alt="Silk Blouse">
+                    </div>
+                    <div class="cart-details">
+                        <h3>Pearl Silk Blouse</h3>
+                        <p class="cart-category">Top</p>
+                        <p class="cart-qty">Qty: 1</p>
+                    </div>
+                    <div class="cart-price">₱2,499</div>
+                </div>
+
+                <div class="cart-item">
+                    <input type="checkbox" class="cart-checkbox" data-price="4500" data-name="Champagne Slip Dress" checked>
+                    <div class="cart-img-box">
+                        <img src="shopdress1.jpg" alt="Slip Dress">
+                    </div>
+                    <div class="cart-details">
+                        <h3>Champagne Slip Dress</h3>
+                        <p class="cart-category">Dress</p>
+                        <p class="cart-qty">Qty: 1</p>
+                    </div>
+                    <div class="cart-price">₱4,500</div>
+                </div>
+
+                <div class="cart-item">
+                    <input type="checkbox" class="cart-checkbox" data-price="1200" data-name="Vintage Gold Hoops">
+                    <div class="cart-img-box">
+                        <img src="shopacc1.jpg" alt="Accessories">
+                    </div>
+                    <div class="cart-details">
+                        <h3>Vintage Gold Hoops</h3>
+                        <p class="cart-category">Accessories</p>
+                        <p class="cart-qty">Qty: 1</p>
+                    </div>
+                    <div class="cart-price">₱1,200</div>
+                </div>
+
+            </div>
+
+            <div class="cart-summary">
+                <h2>Order Summary</h2>
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal-display">₱0</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span>Complimentary</span>
+                </div>
+                <div class="summary-row total-row">
+                    <span>Total</span>
+                    <span id="total-display">₱0</span>
+                </div>
+                <button id="checkout-btn" class="btn-checkout">Checkout Selected</button>
+            </div>
+        </section>
+    </main>
+
+    <div id="receipt-modal" class="modal-overlay hidden">
+        <div class="receipt-box">
+            <h2 class="receipt-title">WhimSleek</h2>
+            <p class="receipt-subtitle">Thank you for your vision.</p>
+            <div class="receipt-divider"></div>
+            
+            <div id="receipt-items-list" class="receipt-list">
+                </div>
+            
+            <div class="receipt-divider"></div>
+            <div class="receipt-total-row">
+                <span>Total Paid:</span>
+                <span id="receipt-total-price">₱0</span>
+            </div>
+            
+            <button id="close-receipt-btn" class="btn-outline" style="width: 100%; margin-top: 20px;">Return to Shop</button>
+        </div>
+    </div>
+
+     <footer class="mega-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>WhimSleek</h3>
+                <p>The digital stylist for the modern visionary.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Partnerships</h4>
+                <a href="#">Shein Exclusive</a>
+                <a href="#">Pinterest Board</a>
+                <a href="#">Vogue Digital</a>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <a href="#">Virtual Fitting Room</a>
+                <a href="#">Personal Stylist</a>
+                <a href="#">Wardrobe Management</a>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <a href="#">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 WhimSleek. All Rights Reserved. Designed by Steven.</p>
+            <p style="font-size: 0.85em; opacity: 0.7; margin-top: 8px;">
+                <em>Disclaimer: This website is a mock-up created for educational and school purposes only. No copyright infringement intended. Not a real commercial store.</em>
+            </p>
+        </div>
+    </footer>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
