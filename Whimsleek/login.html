@@ -107,9 +107,10 @@
             letter-spacing: 1px;
             transition: all 0.3s ease;
             background: transparent;
+            cursor: pointer; /* Added cursor pointer for better UX */
         }
 
-        /* HIGHLIGHT FOR USER */
+        /* HIGHLIGHT FOR ACTIVE ROLE */
         .role-option.active {
             border-color: var(--gold);
             color: var(--gold);
@@ -138,6 +139,7 @@
             font-size: 0.9rem;
             transition: border 0.3s ease;
             outline: none;
+            box-sizing: border-box; /* Ensures padding doesn't overflow width */
         }
 
         .input-group input:focus {
@@ -167,6 +169,7 @@
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .login-btn:hover {
@@ -226,7 +229,7 @@
     </div>
 
     <script>
-        // Simple function para magmukhang legit yung pagpili ng role
+        // Function para mag-highlight ng napiling role
         function selectRole(element) {
             document.querySelectorAll('.role-option').forEach(opt => {
                 opt.classList.remove('active');
@@ -234,17 +237,32 @@
             element.classList.add('active');
         }
 
-        // Mock login function para mag-redirect sa index.html
+        // Updated login function with dynamic redirection
         function handleLogin(event) {
             event.preventDefault();
             
+            // Gumamit ng .textContent at .toLowerCase() para hindi ma-confuse sa CSS uppercase
+            const activeRole = document.querySelector('.role-option.active').textContent.trim().toLowerCase();
+            
+            // I-set ang destination depende sa role
+            let targetPage = "index.html"; // Default page
+            
+            if (activeRole === "super admin") {
+                targetPage = "super-admin.html";
+            } else if (activeRole === "admin") {
+                targetPage = "admin.html";
+            } else if (activeRole === "user") {
+                targetPage = "index.html";
+            }
+
             // Pa-wow effect muna bago mag redirect
             const btn = document.querySelector('.login-btn');
             btn.innerHTML = "Authenticating...";
             btn.style.opacity = "0.7";
+            btn.style.pointerEvents = "none"; // Disable button spam
             
             setTimeout(() => {
-                window.location.href = "index.html"; // Dito siya mapupunta
+                window.location.href = targetPage; // Dito siya mapupunta based sa role
             }, 1500);
         }
     </script>
