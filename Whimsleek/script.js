@@ -143,32 +143,32 @@ if (generateBtn) {
     // --- BAGONG WARDROBE INVENTORY SYSTEM ---
     const inventory = {
         y2k: {
-            tops: generateList("y2ktop", 20),       
-            bottoms: generateList("y2kbottom", ), 
-            dresses: generateList("y2kdress", 20), 
-            shoes: generateList("y2kshoes", 20),
-            accessories: generateList("y2kacc", 20)
+            tops: generateList("y2ktop", 14),       
+            bottoms: generateList("y2kbottom", 10), 
+            dresses: generateList("y2kdress", 6), 
+            shoes: generateList("y2kshoes", 10),
+            accessories: generateList("y2kacc", 12)
         },
         coquette: {
-            tops: generateList("coquettetop", 20),
-            bottoms: generateList("coquettebottom", 20),
-            dresses: generateList("coquettedress", 20),
-            shoes: generateList("coquetteshoes", 20),
-            accessories: generateList("coquetteacc", 20)
+            tops: generateList("coquettetop", 13),
+            bottoms: generateList("coquettebottom", 10),
+            dresses: generateList("coquettedress", 10),
+            shoes: generateList("coquetteshoes", 10),
+            accessories: generateList("coquetteacc", 11)
         },
         grunge: {
-            tops: generateList("grungetop", 20),
-            bottoms: generateList("grungebottom", 20),
-            dresses: generateList("grungedress", 20), 
-            shoes: generateList("grungeshoes", 20),
-            accessories: generateList("grungeacc", 20)
+            tops: generateList("grungetop", 11),
+            bottoms: generateList("grungebottom", 10),
+            dresses: generateList("grungedress", 6), 
+            shoes: generateList("grungeshoes", 10),
+            accessories: generateList("grungeacc", 12)
         },
         casual: {
-            tops: generateList("casualtop", 20),
-            bottoms: generateList("casualbottom", 20),
-            dresses: generateList("casualdress", 20),
-            shoes: generateList("casualshoes", 20),
-            accessories: generateList("casualacc", 20)
+            tops: generateList("casualtop", 13),
+            bottoms: generateList("casualbottom", 10),
+            dresses: generateList("casualdress", 6),
+            shoes: generateList("casualshoes", 10),
+            accessories: generateList("casualacc", 10)
         }
     };
 
