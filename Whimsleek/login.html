@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Montserrat:wght@200;300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
@@ -38,10 +39,9 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: -2; /* Pinaka-ilalim */
+            z-index: -2;
         }
 
-        /* DARK LUXURY TINT SA IBABAW NG VIDEO */
         .video-overlay {
             position: fixed;
             top: 0;
@@ -49,10 +49,10 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(rgba(5, 5, 5, 0.6), rgba(5, 5, 5, 0.95));
-            z-index: -1; /* Nasa pagitan ng video at ng form */
+            z-index: -1;
         }
 
-        /* SHARP LUXURY CARD (No Glassmorphism) */
+        /* LOGIN CONTAINER */
         .login-container {
             background: var(--panel-bg);
             border: 1px solid var(--border-color);
@@ -63,7 +63,7 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.8);
             animation: slideUp 1s ease-out;
             position: relative;
-            z-index: 1; /* Para laging nasa ibabaw ng video at overlay */
+            z-index: 1;
         }
 
         @keyframes slideUp {
@@ -75,7 +75,6 @@
             font-family: 'Cinzel', serif;
             color: #fff;
             font-size: 2.2rem;
-            font-weight: 400;
             letter-spacing: 5px;
             margin-bottom: 10px;
             text-transform: uppercase;
@@ -86,10 +85,9 @@
             font-size: 0.8rem;
             margin-bottom: 40px;
             letter-spacing: 1px;
-            font-weight: 300;
         }
 
-        /* ROLE SELECTOR STYLING - Sharp edges */
+        /* ROLE SELECTOR */
         .role-selector {
             display: flex;
             justify-content: space-between;
@@ -107,21 +105,16 @@
             letter-spacing: 1px;
             transition: all 0.3s ease;
             background: transparent;
-            cursor: pointer; /* Added cursor pointer for better UX */
+            cursor: pointer;
         }
 
-        /* HIGHLIGHT FOR ACTIVE ROLE */
         .role-option.active {
             border-color: var(--gold);
             color: var(--gold);
+            background: rgba(212, 175, 55, 0.05);
         }
 
-        .role-option:hover:not(.active) {
-            border-color: #555;
-            color: #fff;
-        }
-
-        /* INPUT FIELDS - Minimalist */
+        /* INPUT FIELDS */
         .input-group {
             position: relative;
             margin-bottom: 25px;
@@ -137,9 +130,7 @@
             color: #fff;
             font-family: 'Montserrat', sans-serif;
             font-size: 0.9rem;
-            transition: border 0.3s ease;
             outline: none;
-            box-sizing: border-box; /* Ensures padding doesn't overflow width */
         }
 
         .input-group input:focus {
@@ -154,7 +145,6 @@
             display: block;
         }
 
-        /* BUTTON LUXURY STYLE */
         .login-btn {
             width: 100%;
             padding: 15px;
@@ -166,31 +156,71 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-top: 20px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
             cursor: pointer;
+            transition: all 0.4s ease;
         }
 
         .login-btn:hover {
-            letter-spacing: 4px;
             background: var(--gold);
             color: #000;
         }
 
-        .forgot-pass {
-            display: block;
-            margin-top: 25px;
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s;
+        /* DEMO ACCOUNTS PANEL (FIXED TO SIDE) */
+        .demo-panel {
+            position: fixed;
+            left: 30px;
+            bottom: 30px;
+            background: rgba(8, 8, 8, 0.9);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            width: 280px;
+            z-index: 10;
+            border-left: 3px solid var(--gold);
+            backdrop-filter: blur(10px);
+            animation: slideIn 1.2s ease-out;
         }
 
-        .forgot-pass:hover {
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .demo-panel h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 0.9rem;
+            margin: 0 0 15px 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .demo-acc {
+            margin-bottom: 12px;
+            font-size: 0.75rem;
+        }
+
+        .demo-acc:last-child { margin-bottom: 0; }
+
+        .demo-acc span {
+            display: block;
+            color: var(--text-muted);
+        }
+
+        .demo-acc strong {
             color: #fff;
+            text-transform: uppercase;
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        #error-msg {
+            color: #ff4c4c;
+            font-size: 0.7rem;
+            margin-top: 15px;
+            text-transform: uppercase;
+            display: none;
         }
     </style>
 </head>
@@ -202,6 +232,25 @@
     
     <div class="video-overlay"></div>
 
+    <div class="demo-panel">
+        <h3>Demo Access</h3>
+        <div class="demo-acc">
+            <strong>Super Admin</strong>
+            <span>ID: super@whimsleek.com</span>
+            <span>Key: super123</span>
+        </div>
+        <div class="demo-acc">
+            <strong>Administrator</strong>
+            <span>ID: admin@whimsleek.com</span>
+            <span>Key: admin123</span>
+        </div>
+        <div class="demo-acc">
+            <strong>Standard User</strong>
+            <span>ID: user@whimsleek.com</span>
+            <span>Key: user123</span>
+        </div>
+    </div>
+
     <div class="login-container">
         <h1>WhimSleek</h1>
         <p>Enter your credentials to access the vault</p>
@@ -212,24 +261,22 @@
             <div class="role-option active" onclick="selectRole(this)">User</div>
         </div>
 
-        <form onsubmit="handleLogin(event)">
+        <form id="loginForm" onsubmit="handleLogin(event)">
             <div class="input-group">
                 <label>Identifier</label>
-                <input type="text" placeholder="Email or Username" required>
+                <input type="text" id="identifier" placeholder="Email or Username" required>
             </div>
             <div class="input-group">
                 <label>Security Key</label>
-                <input type="password" placeholder="••••••••" required>
+                <input type="password" id="securityKey" placeholder="••••••••" required>
             </div>
 
-            <button type="submit" class="login-btn">Secure Entry</button>
+            <button type="submit" id="submitBtn" class="login-btn">Secure Entry</button>
+            <div id="error-msg">Access Denied: Invalid Credentials</div>
         </form>
-
-        <a href="#" class="forgot-pass">Forgotten credentials? Request access.</a>
     </div>
 
     <script>
-        // Function para mag-highlight ng napiling role
         function selectRole(element) {
             document.querySelectorAll('.role-option').forEach(opt => {
                 opt.classList.remove('active');
@@ -237,33 +284,53 @@
             element.classList.add('active');
         }
 
-        // Updated login function with dynamic redirection
         function handleLogin(event) {
             event.preventDefault();
             
-            // Gumamit ng .textContent at .toLowerCase() para hindi ma-confuse sa CSS uppercase
+            const identifier = document.getElementById('identifier').value.trim();
+            const key = document.getElementById('securityKey').value.trim();
             const activeRole = document.querySelector('.role-option.active').textContent.trim().toLowerCase();
-            
-            // I-set ang destination depende sa role
-            let targetPage = "index.html"; // Default page
-            
+            const errorMsg = document.getElementById('error-msg');
+            const btn = document.getElementById('submitBtn');
+
+            let targetPage = "";
+            let isValid = false;
+
+            // Logic checking based on credentials in the demo panel
             if (activeRole === "super admin") {
-                targetPage = "super-admin.html";
+                if(identifier === "super@whimsleek.com" && key === "super123") {
+                    targetPage = "super-admin.html";
+                    isValid = true;
+                }
             } else if (activeRole === "admin") {
-                targetPage = "admin.html";
+                if(identifier === "admin@whimsleek.com" && key === "admin123") {
+                    targetPage = "admin.html";
+                    isValid = true;
+                }
             } else if (activeRole === "user") {
-                targetPage = "index.html";
+                if(identifier === "user@whimsleek.com" && key === "user123") {
+                    targetPage = "index.html";
+                    isValid = true;
+                }
             }
 
-            // Pa-wow effect muna bago mag redirect
-            const btn = document.querySelector('.login-btn');
-            btn.innerHTML = "Authenticating...";
-            btn.style.opacity = "0.7";
-            btn.style.pointerEvents = "none"; // Disable button spam
-            
-            setTimeout(() => {
-                window.location.href = targetPage; // Dito siya mapupunta based sa role
-            }, 1500);
+            if (isValid) {
+                errorMsg.style.display = "none";
+                btn.innerHTML = "Authenticating...";
+                btn.style.opacity = "0.7";
+                btn.style.pointerEvents = "none";
+                
+                setTimeout(() => {
+                    window.location.href = targetPage;
+                }, 1500);
+            } else {
+                errorMsg.style.display = "block";
+                // Shake effect for feedback
+                document.querySelector('.login-container').style.animation = "none";
+                setTimeout(() => {
+                    document.querySelector('.login-container').style.animation = "slideUp 0.3s ease-out";
+                }, 10);
+            }
         }
     </script>
 </body>
